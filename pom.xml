@@ -25,7 +25,7 @@
 
     <modules>
         <module>swarm</module>
-        <module>mesos</module>
+        <module>marathon</module>
         <module>api</module>
         <module>kubernetes</module>
     </modules>

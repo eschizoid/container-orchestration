@@ -16,7 +16,7 @@ public class RestRoute extends RouteBuilder {
         restConfiguration()
             .component("netty4-http")
             .host("0.0.0.0")
-            .port(8080);
+            .port(9090);
 
         rest("api")
             .get("/hello")

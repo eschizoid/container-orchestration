@@ -11,29 +11,44 @@
 
     <artifactId>kubernetes</artifactId>
     <version>1.0.0</version>
-    <name>Kubernetes Orchestration</name>
-    <description>Docker orchestration with Kubernetes</description>
+    <name>Kubernetes Docker Orchestration</name>
+    <description>Docker orchestration using Kubernetes</description>
+
+    <properties>
+        <docker.image>chicago-coder-conference/${project.artifactId}:${project.version}</docker.image>
+        <docker.port.container.jolokia>8778</docker.port.container.jolokia>
+        <docker.port.container.http>8080</docker.port.container.http>
+
+        <fabric8.service.name>camelcdi</fabric8.service.name>
+        <fabric8.service.port>8080</fabric8.service.port>
+        <fabric8.service.containerPort>http</fabric8.service.containerPort>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.ccc.container.orchestration</groupId>
+            <artifactId>api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-netty4-http</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-cdi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.weld.se</groupId>
+            <artifactId>weld-se-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>org.jboss.weld.environment.se.StartMain</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>org.jboss.weld.environment.se.StartMain</mainClass>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.jolokia</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
@@ -42,7 +57,7 @@
                         <image>
                             <name>${docker.image}</name>
                             <build>
-                                <from>fabric8/java</from>
+                                <from>fabric8/java:8</from>
                                 <assembly>
                                     <descriptorRef>artifact-with-dependencies</descriptorRef>
                                 </assembly>

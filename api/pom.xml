@@ -12,7 +12,7 @@
     <artifactId>api</artifactId>
     <version>1.0.0</version>
     <name>Rest API</name>
-    <description>A simple RESTful API</description>
+    <description>Simple RESTful API using Camel and CDI</description>
 
     <dependencies>
         <dependency>
@@ -53,51 +53,6 @@
                     <mainClass>org.jboss.weld.environment.se.StartMain</mainClass>
                 </configuration>
             </plugin>
-            <!--<plugin>-->
-                <!--<groupId>org.jolokia</groupId>-->
-                <!--<artifactId>docker-maven-plugin</artifactId>-->
-                <!--<configuration>-->
-                    <!--<images>-->
-                        <!--<image>-->
-                            <!--<name>${docker.image}</name>-->
-                            <!--<build>-->
-                                <!--<from>fabric8/java</from>-->
-                                <!--<assembly>-->
-                                    <!--<descriptorRef>artifact-with-dependencies</descriptorRef>-->
-                                <!--</assembly>-->
-                                <!--<env>-->
-                                    <!--<MAIN>org.jboss.weld.environment.se.StartMain</MAIN>-->
-                                <!--</env>-->
-                            <!--</build>-->
-                            <!--<run>-->
-                                <!--<ports>-->
-                                    <!--<port>8080:8080</port>-->
-                                <!--</ports>-->
-                            <!--</run>-->
-                        <!--</image>-->
-                    <!--</images>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
-            <!--<plugin>-->
-                <!--<groupId>io.fabric8</groupId>-->
-                <!--<artifactId>fabric8-maven-plugin</artifactId>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>json</id>-->
-                        <!--<phase>generate-resources</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>json</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                    <!--<execution>-->
-                        <!--<id>attach</id>-->
-                        <!--<phase>package</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>attach</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
         </plugins>
     </build>
 </project>

@@ -2,6 +2,7 @@ package com.ccc.container.orchestration.api;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.cdi.ContextName;
+import org.apache.camel.util.InetAddressUtil;
 
 /**
  * @author Mariano Gonzalez
@@ -27,11 +28,7 @@ public class RestRoute extends RouteBuilder {
 
         from("direct:hello")
             .transform()
-                .constant("Hello World");
-
-        from("direct:bye")
-            .transform()
-                .constant("Bye World");
+                .constant("Hello from: " + InetAddressUtil.getLocalHostName());
         // @formatter:on
     }
 }

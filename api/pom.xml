@@ -78,6 +78,9 @@
                                 <env>
                                     <MAIN>org.jboss.weld.environment.se.StartMain</MAIN>
                                 </env>
+                                <ports>
+                                    <port>9090</port>
+                                </ports>
                             </build>
                             <run>
                                 <ports>

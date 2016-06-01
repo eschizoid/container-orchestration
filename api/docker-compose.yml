@@ -1,0 +1,6 @@
+version: "2"
+
+services:
+  api:
+    image: robgmills/ccc-api:1.0.0
+

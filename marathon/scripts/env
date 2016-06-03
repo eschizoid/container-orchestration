@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+if [ -z "${DOCKER_IP}" ]; then
+    DOCKER_IP=$(docker-machine ip default)
+fi

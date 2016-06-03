@@ -1,5 +1,5 @@
 {
-  "id": "/ccc-api",
+  "id": "/api",
   "cmd": null,
   "cpus": 0.1,
   "mem": 64,
@@ -15,7 +15,7 @@
         {
           "containerPort": 9090,
           "hostPort": 0,
-          "servicePort": 10001,
+          "servicePort": 10002,
           "protocol": "tcp",
           "name": "api",
           "labels": {}
@@ -26,9 +26,12 @@
       "forcePullImage": true
     }
   },
+  "labels": {
+    "HAPROXY_GROUP": "external"
+  },
   "portDefinitions": [
     {
-      "port": 10001,
+      "port": 10002,
       "protocol": "tcp",
       "labels": {}
     }

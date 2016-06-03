@@ -2,7 +2,7 @@
   "id": "/ccc-api",
   "cmd": null,
   "cpus": 0.1,
-  "mem": 128,
+  "mem": 64,
   "disk": 0,
   "instances": 0,
   "container": {

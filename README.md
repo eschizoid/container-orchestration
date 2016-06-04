@@ -57,6 +57,8 @@ scripts/docker-machine-port-forwarding.sh
 scripts/wait-for-kubernetes.sh
 ```
 
+If everything was installed correctly, Kubernetes UI shoudl be available [here](http://localhost:8080/api/v1/proxy/namespaces/kube-system/services/kube-ui/).
+
 ### Replication Controller
 Once Kubernetes infrastructure is up and running, we need to create a Replication controller in order to expose the API.
 To do that issue the following command:
@@ -80,7 +82,7 @@ command
 Observe how the response changes depending on how Kubernetes Replication controller balances the traffic.
 
 **Note**
-You can scale the number of replicas to wthever number you want to.
+You can scale the number of replicas to whatever number you want to.
 
 ### Explore the kubectl CLI
 Check the health status of the cluster components:
@@ -116,7 +118,7 @@ If you use `docker-machine` you can do the following, assuming `default` is your
 machine's name:
 
 ```
-export DOCKER_IP=$(docker-machine ip dev)
+export DOCKER_IP=$(docker-machine ip default)
 ```
 
 Run your cluster in the background:

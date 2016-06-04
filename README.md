@@ -45,7 +45,7 @@ cluster, you might end up using `kubernest-down.sh`
 
 In order to get started you need to do is execute following command, that will setup Kubernetes infrastructure:
 ```
-`./kubernestes-up.sh
+`./kube-up.sh
 ```
 
 This wrapper script uses the following shells in oder to setup all Kubernetes components:

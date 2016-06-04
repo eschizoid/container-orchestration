@@ -130,7 +130,6 @@ docker-compose up -d
 That's it, use the following URLs:
 
 * http://$DOCKER_IP:5050/ for Mesos master UI
-* http://$DOCKER_IP:5051/ for the first Mesos slave UI
 * http://$DOCKER_IP:8080/ for Marathon UI
 
 Deploy the supporting infrastructure using the scripts.

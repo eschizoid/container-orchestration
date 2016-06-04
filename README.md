@@ -45,7 +45,7 @@ cluster, you might end up using `kubernest-down.sh`
 
 In order to get started you need to do is execute following command, that will setup Kubernetes infrastructure:
 ```
-`./kubernestes-up.sh
+./kubernestes-up.sh
 ```
 
 This wrapper script uses the following shells in oder to setup all Kubernetes components:
@@ -62,23 +62,25 @@ Once Kubernetes infrastructure is up and running, we need to create a Replicatio
 To do that issue the following command:
 
 ```
-scripts/api/deploy.sh
+./scripts/api/deploy.sh
 ```
 
 ### Test Kubernetes cluster
 Test Kubernetes cluster:
 ```
-scripts/api/hello.sh
+./scripts/api/hello.sh
 ```
 
 ### Scale Kubernetes cluster
 Now that Replication controller is ready, is time to scale the application. Open a second terminal and issue the  following
 command
 ```
-scripts/kubernetes/scale-kubernestes-cluster.sh
+./scripts/kubernetes/scale-kubernestes-cluster.sh <-r|--replicas> 2
 ```
 Observe how the response changes depending on how Kubernetes Replication controller balances the traffic.
 
+**Note**
+You can scale the number of replicas to wthever number you want to.
 
 ### Explore the kubectl CLI
 Check the health status of the cluster components:
@@ -114,7 +116,7 @@ If you use `docker-machine` you can do the following, assuming `dev` is your
 machine's name:
 
 ```
-export DOCKER_IP=$(docker-machine ip default)
+export DOCKER_IP=$(docker-machine ip dev)
 ```
 
 Run your cluster in the background (equivalent to `docker-compose up -d`):

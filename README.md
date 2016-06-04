@@ -3,12 +3,12 @@
 
 # Pre-requisites
 
-We've built the workshop/demo for our presentation on Docker.  Yes, that means you'll be running Docker in Docker.  
+We've built the workshop/demo for our presentation on Docker. Yes, that means you'll be running Docker in Docker.
 
 Make sure you have followed the instructions to install the [latest tools from Docker][docker-toolbox] and have a working
 Docker daemon.
 
-It may also be helpful to install Java and Maven, if you want to build everything from source.  If not, that's ok, all of
+It may also be helpful to install Java and Maven, if you want to build everything from source. If not, that's ok, all of
 the applications and Docker containers have been pre-built and published to [Docker Hub][docker-hub].
 
 # Getting started
@@ -83,7 +83,6 @@ kubectl get
 ```
 
 ## Marathon/Mesos
-
 You have to specify `DOCKER_IP` env variable in order to make Mesos work
 properly. The default value is `127.0.0.1` and it should work if you have
 Docker daemon running locally.

@@ -43,21 +43,44 @@ In case you don't have docker-machine, just execute the following helper script 
 The main scripts for setting a Kubernetes cluster within Docker is `kubernestes-up.sh`. In case you wanna destroy Kubernetes
 cluster, you might end up using `kubernest-down.sh`
 
-In order to get started the only thing you need to do is execute
+In order to get started you need to do is execute following command, that will setup Kubernetes infrastructure:
 ```
 `./kubernestes-up.sh
 ```
 
-This wrapper script uses the following scripts in oder to setup all Kubernetes component:
+This wrapper script uses the following shells in oder to setup all Kubernetes components:
 ```
-activate-dns.sh
-activate-kube-ui.sh
-create-kube-system-namespace.sh
-docker-machine-port-forwarding.sh
-wait-for-kubernetes.sh
+scripts/activate-dns.sh
+scripts/activate-kube-ui.sh
+scripts/create-kube-system-namespace.sh
+scripts/docker-machine-port-forwarding.sh
+scripts/wait-for-kubernetes.sh
 ```
-### Explore the kubectl CLI
 
+### Replication Controller
+Once Kubernetes infrastructure is up and running, we need to create a Replication controller in order to expose the API.
+To do that issue the following command:
+
+```
+scripts/api/deploy.sh
+```
+
+### Test Kubernetes cluster
+Test Kubernetes cluster:
+```
+scripts/api/hello.sh
+```
+
+### Scale Kubernetes cluster
+Now that Replication controller is ready, is time to scale the application. Open a second terminal and issue the  following
+command
+```
+scripts/kubernetes/scale-kubernestes-cluster.sh
+```
+Observe how the response changes depending on how Kubernetes Replication controller balances the traffic.
+
+
+### Explore the kubectl CLI
 Check the health status of the cluster components:
 
 ```
@@ -137,5 +160,3 @@ Fabric8.
 
 [docker-toolbox]: https://www.docker.com/products/docker-toolbox
 [docker-hub]: https://hub.docker.com
-
-

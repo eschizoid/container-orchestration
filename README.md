@@ -106,7 +106,7 @@ kubectl get nodes
 List services:
 
 ```
-kubectl get
+kubectl get services
 ```
 
 ## Marathon/Mesos

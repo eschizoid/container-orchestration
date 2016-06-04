@@ -17,8 +17,6 @@ services:
       MESOS_REGISTRY: replicated_log # default is in_memory for some reason
       MESOS_HOSTNAME: ${DOCKER_IP}
       LIBPROCESS_IP: ${DOCKER_IP}
-    volumes:
-      - ${PWD}/resolv.conf:/etc/resolv.conf
     depends_on:
       - zk
 
@@ -37,7 +35,6 @@ services:
       - /sys/fs/cgroup:/sys/fs/cgroup
       - /usr/local/bin/docker:/usr/bin/docker
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${PWD}/resolv.conf:/etc/resolv.conf
     depends_on:
       - zk
 

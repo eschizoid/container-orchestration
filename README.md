@@ -36,7 +36,7 @@ to run commands.
 In case you don't have docker-machine, just execute the following helper script to create one
 
 ```
-./docker-machine-kubernestes.sh
+.kubernes/docker-machine-kubernestes.sh
 ```
 
 ### Run Kubernetes Cluster
@@ -45,16 +45,16 @@ cluster, you might end up using `kube-down.sh`
 
 In order to get started you need to do is execute following command, that will setup Kubernetes infrastructure:
 ```
-./kube-up.sh
+.kubernes/kube-up.sh
 ```
 
 This wrapper script uses the following shells in oder to setup all Kubernetes components:
 ```
-scripts/activate-dns.sh
-scripts/activate-kube-ui.sh
-scripts/create-kube-system-namespace.sh
-scripts/docker-machine-port-forwarding.sh
-scripts/wait-for-kubernetes.sh
+./kubernes/scripts/activate-dns.sh
+./kubernes/scripts/activate-kube-ui.sh
+./kubernes/scripts/create-kube-system-namespace.sh
+./kubernes/scripts/docker-machine-port-forwarding.sh
+./kubernes/scripts/wait-for-kubernetes.sh
 ```
 
 If everything was installed correctly, Kubernetes UI shoudl be available [here](http://localhost:8080/api/v1/proxy/namespaces/kube-system/services/kube-ui/).
@@ -64,20 +64,20 @@ Once Kubernetes infrastructure is up and running, we need to create a Replicatio
 To do that issue the following command:
 
 ```
-./scripts/api/deploy.sh
+./kubernes//scripts/api/deploy.sh
 ```
 
 ### Test Kubernetes cluster
 Test Kubernetes cluster:
 ```
-./scripts/api/hello.sh
+./kubernes/scripts/api/hello.sh
 ```
 
 ### Scale Kubernetes cluster
 Now that Replication controller is ready, is time to scale the application. Open a second terminal and issue the  following
 command
 ```
-./scripts/kubernetes/scale-kubernestes-cluster.sh <-r|--replicas> 2
+./kubernes/scripts/kubernetes/scale-kubernestes-cluster.sh <-r|--replicas> 2
 ```
 Observe how the response changes depending on how Kubernetes Replication controller balances the traffic.
 

@@ -139,6 +139,8 @@ Deploy the supporting infrastructure using the scripts.
 
 That script simply loads the template JSON from the same directory that the script lives in, and `POST`s it to 
 [Marathon's REST API][marathon-rest-api].
+
+Now go to the Marathon UI listed above and scale the API up to start making requests.
  
 ### Help!  I screwed everything up! What do I do?
 

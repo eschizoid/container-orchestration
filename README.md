@@ -82,7 +82,7 @@ command
 Observe how the response changes depending on how Kubernetes Replication controller balances the traffic.
 
 **Note**
-You can scale the number of replicas to wthever number you want to.
+You can scale the number of replicas to whatever number you want to.
 
 ### Explore the kubectl CLI
 Check the health status of the cluster components:

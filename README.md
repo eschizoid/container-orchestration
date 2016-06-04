@@ -118,7 +118,7 @@ If you use `docker-machine` you can do the following, assuming `default` is your
 machine's name:
 
 ```
-export DOCKER_IP=$(docker-machine ip dev)
+export DOCKER_IP=$(docker-machine ip default)
 ```
 
 Run your cluster in the background:

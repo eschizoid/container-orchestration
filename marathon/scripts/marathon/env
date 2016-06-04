@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+API_ROOT=http://${DOCKER_IP}:8080/v2/apps

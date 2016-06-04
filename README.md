@@ -108,31 +108,41 @@ kubectl get
 ## Marathon/Mesos
 You have to specify `DOCKER_IP` env variable in order to make Mesos work
 properly. The default value is `127.0.0.1` and it should work if you have
-Docker daemon running locally.
+Docker daemon running locally (i.e. you're on a Linux machine)
 
-If you use `docker-machine` you can do the following, assuming `dev` is your
+If you use `docker-machine` you can do the following, assuming `default` is your
 machine's name:
 
 ```
 export DOCKER_IP=$(docker-machine ip default)
 ```
 
-Run your cluster in the background (equivalent to `docker-compose up -d`):
+Run your cluster in the background:
 
 ```
-docker-compose up
+docker-compose up -d
 ```
 
 That's it, use the following URLs:
 
 * http://$DOCKER_IP:5050/ for Mesos master UI
 * http://$DOCKER_IP:5051/ for the first Mesos slave UI
-* http://$DOCKER_IP:5052/ for the second Mesos slave UI
 * http://$DOCKER_IP:8080/ for Marathon UI
-* http://$DOCKER_IP:8888/ for Chronos UI
 
+Deploy the supporting infrastructure using the scripts.
 
-To kill your cluster and wipe all state to start fresh:
+```
+./marathon/scripts/marathon/deploy.sh load-balancer
+./marathon/scripts/marathon/deploy.sh mesos-dns
+./marathon/scripts/marathon/deploy.sh api
+```
+
+That script simply loads the template JSON from the same directory that the script lives in, and `POST`s it to 
+[Marathon's REST API][marathon-rest-api].
+ 
+### Help!  I screwed everything up! What do I do?
+
+Simply kill your cluster and wipe all state to start fresh:
 
 ```
 docker-compose stop && docker-compose rm -f -v

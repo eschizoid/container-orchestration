@@ -40,12 +40,12 @@ In case you don't have docker-machine, just execute the following helper script 
 ```
 
 ### Run Kubernetes Cluster
-The main scripts for setting a Kubernetes cluster within Docker is `kubernestes-up.sh`. In case you wanna destroy Kubernetes
-cluster, you might end up using `kubernest-down.sh`
+The main scripts for setting a Kubernetes cluster within Docker is `kube-up.sh`. In case you wanna destroy Kubernetes
+cluster, you might end up using `kube-down.sh`
 
 In order to get started you need to do is execute following command, that will setup Kubernetes infrastructure:
 ```
-./kubernestes-up.sh
+./kube-up.sh
 ```
 
 This wrapper script uses the following shells in oder to setup all Kubernetes components:
@@ -127,12 +127,24 @@ Run your cluster in the background:
 docker-compose up -d
 ```
 
-That's it, use the following URLs:
+That deploys a very basic environment consisting of:
+ 
+* A single Mesos Master node - addressable at [http://$DOCKER_IP:5050](http://192.168.99.100:5050)
+* A single Mesos Slave node
+* An instance of Zookeeper
+* A instance of the Marathon UI - addressable at [http://$DOCKER_IP:8080](http://192.168.99.100:8080)
 
-* http://$DOCKER_IP:5050/ for Mesos master UI
-* http://$DOCKER_IP:8080/ for Marathon UI
+With this infrastructure alone, we can deploy and run a number of different containers and frameworks.  But in order to build
+a resilient system, we're going to want to deploy a few extra things:
 
-Deploy the supporting infrastructure using the scripts.
+* A load balancer for discovery of and to properly route traffic to instances of our API
+* A DNS instance to help with service discovery of the underlying Mesos frameworks
+
+You can deploy the supporting infrastructure using on of two methods:
+
+### Shell Scripts
+
+Run the following scripts:
 
 ```
 ./marathon/scripts/marathon/deploy.sh load-balancer
@@ -143,8 +155,16 @@ Deploy the supporting infrastructure using the scripts.
 That script simply loads the template JSON from the same directory that the script lives in, and `POST`s it to 
 [Marathon's REST API][marathon-rest-api].
 
-Now go to the Marathon UI listed above and scale the API up to start making requests.
- 
+### The Marathon UI
+
+Navigate to the Marathon UI ([http://$DOCKER_IP](http://192.168.99.100:8080)) and click the button labeled "Create Application".
+Set the fields appropriately as defined in the JSON templates located in the directory `marathon/scripts/marathon` or toggle the
+JSON mode switch in the top right corner and copy/paste the template.  Click the button to save and deploy the configuration.
+
+### Scale the API
+
+TODO
+
 ### Help!  I screwed everything up! What do I do?
 
 Simply kill your cluster and wipe all state to start fresh:

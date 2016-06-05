@@ -77,7 +77,7 @@ Test Kubernetes cluster:
 Now that Replication controller is ready, is time to scale the application. Open a second terminal and issue the  following
 command
 ```
-./kubernetes/scripts/kubernetes/scale-kubernestes-cluster.sh <-r|--replicas> 2
+./kubernetes/scripts/kubernetes/scale.sh <-r|--replicas> 2
 ```
 Observe how the response changes depending on how Kubernetes Replication controller balances the traffic.
 

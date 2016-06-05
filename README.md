@@ -161,7 +161,16 @@ JSON mode switch in the top right corner and copy/paste the template.  Click the
 
 ### Scale the API
 
-TODO
+Open a second terminal and issue the following command:
+
+```
+./marathon/scripts/marathon/scale-marathon-cluster.sh
+```
+Observe how the response changes depending on how HA Proxy balances the traffic.
+
+**Note**
+You can scale the number of replicas to whatever number you want to.
+
 
 ### Help!  I screwed everything up! What do I do?
 

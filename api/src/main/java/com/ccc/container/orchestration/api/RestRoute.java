@@ -18,13 +18,25 @@ public class RestRoute extends RouteBuilder {
             .component("netty4-http")
             .host("0.0.0.0")
             .port(9090);
+
         rest("api")
             .get("/hello")
-                .to("direct:hello");
+                .to("direct:hello")
+            .get("/crash")
+                .to("direct:by")
+            .get("/health-check")
+                .to("direct:health-check");
 
         from("direct:hello")
             .transform()
                 .constant("Hey hey hey from: " + InetAddressUtil.getLocalHostName());
+
+        from("direct:crash").description("Endpoint for simulating a service unavailable 503")
+            .process(exchange-> System.exit(1));
+
+        from("direct:health-check")
+            .transform()
+                .constant("Everything looks good");
         // @formatter:on
     }
 }

@@ -32,7 +32,7 @@ spec:
             path: /api/health-check
             port: 9090
           initialDelaySeconds: 10
-          timeoutSeconds: 5
+          timeoutSeconds: 1
 EOF
 
 kubectl expose rc ccc-api --port=9090 --target-port=9090 --type=NodePort

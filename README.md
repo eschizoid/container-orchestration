@@ -57,7 +57,7 @@ This wrapper script uses the following shells in oder to setup all Kubernetes co
 ./kubernetes/scripts/wait-for-kubernetes.sh
 ```
 
-If everything was installed correctly, Kubernetes UI shoudl be available [here](http://localhost:8080/api/v1/proxy/namespaces/kube-system/services/kube-ui/).
+If everything was installed correctly, Kubernetes UI should be available [here](http://localhost:8080/api/v1/proxy/namespaces/kube-system/services/kube-ui/).
 
 ### Replication Controller
 Once Kubernetes infrastructure is up and running, we need to create a Replication controller in order to expose the API.
@@ -77,7 +77,7 @@ Test Kubernetes cluster:
 Now that Replication controller is ready, is time to scale the application. Open a second terminal and issue the  following
 command
 ```
-./kubernetes/scripts/kubernetes/scale-kubernestes-cluster.sh <-r|--replicas> 2
+./kubernetes/scripts/kubernetes/scale.sh <-r|--replicas> 2
 ```
 Observe how the response changes depending on how Kubernetes Replication controller balances the traffic.
 
@@ -206,15 +206,13 @@ Observe how the response changes depending on how HA Proxy balances the traffic.
 **Note**
 You can scale the number of replicas to whatever number you want to.
 
-### Help!  I screwed everything up! What do I do?
+## Help!  I screwed everything up! What do I do?
 
 Simply kill your cluster and wipe all state to start fresh:
 
 ```
 docker-compose stop && docker-compose rm -f -v
 ```
-
-## Docker Swarm
 
 # Building from scratch
 

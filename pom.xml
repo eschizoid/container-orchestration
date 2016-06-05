@@ -24,10 +24,9 @@
     </properties>
 
     <modules>
-        <module>swarm</module>
         <module>marathon</module>
-        <module>api</module>
         <module>kubernetes</module>
+        <module>api</module>
     </modules>
 
     <dependencyManagement>

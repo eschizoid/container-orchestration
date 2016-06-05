@@ -33,7 +33,7 @@ At the time or writing this, there was nto official support for `kubectl` on Win
 to run commands.
 
 ### Create docker machine (OS X and Windows)
-In case you don't have docker-machine, just execute the following helper script to create one
+In case you don't have docker-machine, just execute the following helper script to create one:
 
 ```
 ./kubernetes/docker-machine-kubernestes.sh
@@ -45,7 +45,7 @@ cluster, you might end up using `kube-down.sh`
 
 In order to get started you need to do is execute following command, that will setup Kubernetes infrastructure:
 ```
-./kubernes/kube-up.sh
+./kubernetes/kube-up.sh
 ```
 
 This wrapper script uses the following shells in oder to setup all Kubernetes components:

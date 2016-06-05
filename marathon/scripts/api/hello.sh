@@ -4,4 +4,8 @@ source ${DIR}/../env
 source ${DIR}/env
 # DO NOT EDIT ABOVE THIS LINE!!!
 
-curl -v -X GET ${API_ROOT}/hello
+while true
+do
+    curl -X GET -w "\n" ${API_ROOT}/hello
+    sleep 1
+done

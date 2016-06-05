@@ -12,27 +12,35 @@ It may also be helpful to install Java and Maven, if you want to build everythin
 the applications and Docker containers have been pre-built and published to [Docker Hub][docker-hub].
 
 # Getting started
+
 ## Kubernetes
+
 The firs thing you need to do is install Kubernetes command line interface (`kubectl`). This will allow you to communicate
 with all different Kubernetes components such as: pods, services and nodes.
 
 ### Install kubectl
+
 #### Linux
+
 ```
 curl -O https://storage.googleapis.com/bin.kuar.io/linux/kubectl
 chmod +x kubectl
 sudo cp kubectl /usr/local/bin/kubectl
 ```
+
 #### OS X
+
 ```
 brew install kubectl
 ```
 
 #### Windows
-At the time or writing this, there was nto official support for `kubectl` on Windows. You will have to ssh into the container
+
+At the time of writing this, there was no official support for `kubectl` on Windows. You will have to ssh into the container
 to run commands.
 
 ### Create docker machine (OS X and Windows)
+
 In case you don't have docker-machine, just execute the following helper script to create one:
 
 ```
@@ -40,6 +48,7 @@ In case you don't have docker-machine, just execute the following helper script 
 ```
 
 ### Run Kubernetes Cluster
+
 The main scripts for setting a Kubernetes cluster within Docker is `kube-up.sh`. In case you wanna destroy Kubernetes
 cluster, you might end up using `kube-down.sh`
 
@@ -48,7 +57,8 @@ In order to get started you need to do is execute following command, that will s
 ./kubernetes/kube-up.sh
 ```
 
-This wrapper script uses the following shells in oder to setup all Kubernetes components:
+This wrapper script uses the following shells in oder to setup all Kubernetes components(replication controllers, services,
+namespaces, etc):
 ```
 ./kubernetes/scripts/activate-dns.sh
 ./kubernetes/scripts/activate-kube-ui.sh
@@ -60,31 +70,64 @@ This wrapper script uses the following shells in oder to setup all Kubernetes co
 If everything was installed correctly, Kubernetes UI should be available [here](http://localhost:8080/api/v1/proxy/namespaces/kube-system/services/kube-ui/).
 
 ### Replication Controller
-Once Kubernetes infrastructure is up and running, we need to create a Replication controller in order to expose the API.
+
+Once Kubernetes infrastructure is up and running, we need to create a Replication Controller in order to expose the API.
 To do that issue the following command:
 
 ```
 ./kubernetes/scripts/api/deploy.sh
 ```
 
-### Test Kubernetes cluster
-Test Kubernetes cluster:
+### Hit the API
+
+We can hit the API by making requests through the load balancer.
+
+                                                                      +-------+
+                                                                      |       |
+                                                            +---------> API(1)|
+       +----------+         +------------------------+      |         |       |
+       |          |         |                        |      |         +-------+
+       |   Curl   +---------> Replication Controller +------+
+       |          |         |                        |      |         +-------+
+       +----------+         +------------------------+      |         |       |
+                                                            +---------> API(2)|
+                                                                      |       |
+                                                                      +-------+
+
+
+First get Kubernetes node port using the following command:
+
 ```
-./kubernetes/scripts/api/hello.sh
+kubectl get -o yaml service/ccc-api | grep nodePort
+```
+
+Using the port from the previous step, run the command (remember to substitute the place holders):
+
+```
+curl -X GET http://{DOCKER_IP}:{KUBERNETES_NODE_PORT}/api/hello
+```
+
+or use the script that polls the API
+
+```
+./kubernetes/scripts/kubernetes/hello.sh
 ```
 
 ### Scale the API
+
 Now that Replication controller is ready, is time to scale the application. Open a second terminal and issue the  following
 command
 ```
-./kubernetes/scripts/kubernetes/scale.sh <-r|--replicas> 2
+./kubernetes/scripts/kubernetes/scale.sh -r <number of replicas>
 ```
+
 Observe how the response changes depending on how Kubernetes Replication controller balances the traffic.
 
 **Note**
 You can scale the number of replicas to whatever number you want to.
 
 ### Explore the kubectl CLI
+
 Check the health status of the cluster components:
 
 ```
@@ -110,6 +153,7 @@ kubectl get services
 ```
 
 ## Marathon/Mesos
+
 You have to specify `DOCKER_IP` env variable in order to make Mesos work
 properly. The default value is `127.0.0.1` and it should work if you have
 Docker daemon running locally (i.e. you're on a Linux machine)
@@ -198,7 +242,7 @@ round-robins through the available instances.
 Open a second terminal and issue the following command:
 
 ```
-./marathon/scripts/marathon/scale.sh api <some number>
+./marathon/scripts/marathon/scale.sh api <number of instances>
 ```
 
 Observe how the response changes depending on how HA Proxy balances the traffic.

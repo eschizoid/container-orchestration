@@ -153,30 +153,58 @@ Run the following scripts:
 That script simply loads the template JSON from the same directory that the script lives in, and `POST`s it to 
 [Marathon's REST API](https://mesosphere.github.io/marathon/docs/rest-api.html).
 
+The HAProxy load balancer is now addressable at [http://$DOCKER_IP:9090/haproxy?stats](http://192.168.99.100:9090/haproxy?stats)
+
 ### The Marathon UI
 
 Navigate to the Marathon UI ([http://$DOCKER_IP](http://192.168.99.100:8080)) and click the button labeled "Create Application".
 Set the fields appropriately as defined in the JSON templates located in the directory `marathon/scripts/marathon` or toggle the
 JSON mode switch in the top right corner and copy/paste the template.  Click the button to save and deploy the configuration.
 
-### Test Marathon cluster
-Test Marathon cluster:
+### Hit the API
+
+We can hit the API by making requests through the load balancer.
+
+                                                               +-------+
+                                                               |       |
+                                                     +---------> API(1)|
+       +----------+         +---------------+        |         |       |
+       |          |         |               |        |         +-------+
+       |   Curl   +---------> Load Balancer +--------+
+       |          |         |               |        |         +-------+
+       +----------+         +---------------+        |         |       |
+                                                     +---------> API(2)|
+                                                               |       |
+                                                               +-------+
+
+
+Run the command 
+
 ```
-./marathon/scripts/api/hello.sh
+curl -X GET http://${DOCKER_IP}:10000/api/hello
 ```
+
+or use the script that polls the API
+
+```
+./marathon/scripts/marathon/hello.sh
+```
+
+Notice how the part of the response that contains the host information changes with each request as the load balancer 
+round-robins through the available instances.
 
 ### Scale the API
 
 Open a second terminal and issue the following command:
 
 ```
-./marathon/scripts/marathon/scale-marathon-cluster.sh
+./marathon/scripts/marathon/scale.sh api <some number>
 ```
+
 Observe how the response changes depending on how HA Proxy balances the traffic.
 
 **Note**
 You can scale the number of replicas to whatever number you want to.
-
 
 ### Help!  I screwed everything up! What do I do?
 

@@ -206,15 +206,13 @@ Observe how the response changes depending on how HA Proxy balances the traffic.
 **Note**
 You can scale the number of replicas to whatever number you want to.
 
-### Help!  I screwed everything up! What do I do?
+## Help!  I screwed everything up! What do I do?
 
 Simply kill your cluster and wipe all state to start fresh:
 
 ```
 docker-compose stop && docker-compose rm -f -v
 ```
-
-## Docker Swarm
 
 # Building from scratch
 

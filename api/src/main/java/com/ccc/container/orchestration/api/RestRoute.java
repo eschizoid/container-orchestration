@@ -23,7 +23,7 @@ public class RestRoute extends RouteBuilder {
             .get("/hello")
                 .to("direct:hello")
             .get("/crash").description("Endpoint for simulating a service unavailable 503")
-                .to("direct:by")
+                .to("direct:crash")
             .get("/health-check")
                 .to("direct:health-check");
 

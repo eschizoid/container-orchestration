@@ -134,10 +134,11 @@ That deploys a very basic environment consisting of:
 * An instance of Zookeeper
 * A instance of the Marathon UI - addressable at [http://$DOCKER_IP:8080](http://192.168.99.100:8080)
 
-With this infrastructure alone, we can deploy and run a number of different containers and frameworks.
-But in order to build a resilient system, we're going to want to deploy a load balancer for discovery 
-of and to properly route traffic to instances of our API.  We're going to deploy the load balancer on 
-Mesos using Marathon so that Marathon can automatically restart the load balancer if it goes down. 
+With this infrastructure alone, we can deploy and run a number of different containers and frameworks.  But in order to build
+a resilient system, we're going to want to deploy a few extra things:
+
+* A load balancer for discovery of and to properly route traffic to instances of our API
+* A DNS instance to help with service discovery of the underlying Mesos frameworks
 
 You can deploy the supporting infrastructure using on of two methods:
 
@@ -147,11 +148,12 @@ Run the following scripts:
 
 ```
 ./marathon/scripts/marathon/deploy.sh load-balancer
+./marathon/scripts/marathon/deploy.sh mesos-dns
 ./marathon/scripts/marathon/deploy.sh api
 ```
 
 That script simply loads the template JSON from the same directory that the script lives in, and `POST`s it to 
-[Marathon's REST API](https://mesosphere.github.io/marathon/docs/rest-api.html).
+[Marathon's REST API][marathon-rest-api].
 
 ### The Marathon UI
 

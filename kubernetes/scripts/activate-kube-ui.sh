@@ -27,10 +27,6 @@ spec:
       containers:
       - name: kube-ui
         image: gcr.io/google_containers/kube-ui:v4
-        resources:
-          limits:
-            cpu: 100m
-            memory: 50Mi
         ports:
         - containerPort: 8080
         livenessProbe:

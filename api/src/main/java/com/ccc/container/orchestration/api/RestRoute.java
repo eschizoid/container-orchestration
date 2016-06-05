@@ -22,7 +22,7 @@ public class RestRoute extends RouteBuilder {
         rest("api")
             .get("/hello")
                 .to("direct:hello")
-            .get("/crash").description("Endpoint for simulating a service unavailable 503")
+            .get("/crash").description("Endpoint for simulating a service unavailable (HTTP status 503)")
                 .to("direct:crash")
             .get("/health-check")
                 .to("direct:health-check");
@@ -31,8 +31,8 @@ public class RestRoute extends RouteBuilder {
             .transform()
                 .constant("Hey hey hey from: " + InetAddressUtil.getLocalHostName());
 
-        from("direct:crash")
-            .process(exchange-> System.exit(1));
+        from("direct:by")
+            .process(exchange -> System.exit(1));
 
         from("direct:health-check")
             .transform()

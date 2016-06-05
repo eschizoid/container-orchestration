@@ -1,0 +1,40 @@
+{
+  "id": "/api-v1.1.0",
+  "cmd": null,
+  "cpus": 0.1,
+  "mem": 64,
+  "disk": 0,
+  "instances": 1,
+  "container": {
+    "type": "DOCKER",
+    "volumes": [],
+    "docker": {
+      "image": "robgmills/ccc-api:1.1.0",
+      "network": "BRIDGE",
+      "portMappings": [
+        {
+          "containerPort": 9090,
+          "hostPort": 0,
+          "servicePort": 10003,
+          "protocol": "tcp",
+          "name": "api",
+          "labels": {}
+        }
+      ],
+      "privileged": false,
+      "parameters": [],
+      "forcePullImage": true
+    }
+  },
+  "labels": {
+    "HAPROXY_GROUP": "external",
+    "HAPROXY_0_PORT": "10002"
+  },
+  "portDefinitions": [
+    {
+      "port": 10003,
+      "protocol": "tcp",
+      "labels": {}
+    }
+  ]
+}

@@ -18,17 +18,13 @@ public class RestRoute extends RouteBuilder {
             .component("netty4-http")
             .host("0.0.0.0")
             .port(9090);
-
         rest("api")
             .get("/hello")
-                .to("direct:hello")
-            .get("/bye")
-                .consumes("application/json")
-                .to("direct:bye");
+                .to("direct:hello");
 
         from("direct:hello")
             .transform()
-                .constant("Hello from: " + InetAddressUtil.getLocalHostName());
+                .constant("Hey hey hey from: " + InetAddressUtil.getLocalHostName());
         // @formatter:on
     }
 }

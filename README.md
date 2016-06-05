@@ -57,7 +57,7 @@ This wrapper script uses the following shells in oder to setup all Kubernetes co
 ./kubernetes/scripts/wait-for-kubernetes.sh
 ```
 
-If everything was installed correctly, Kubernetes UI shoudl be available [here](http://localhost:8080/api/v1/proxy/namespaces/kube-system/services/kube-ui/).
+If everything was installed correctly, Kubernetes UI should be available [here](http://localhost:8080/api/v1/proxy/namespaces/kube-system/services/kube-ui/).
 
 ### Replication Controller
 Once Kubernetes infrastructure is up and running, we need to create a Replication controller in order to expose the API.

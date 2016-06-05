@@ -15,7 +15,10 @@
     <description>Simple RESTful API deploy on Fabric8</description>
 
     <properties>
-        <docker.image>${project.artifactId}:${project.version}</docker.image>
+        <ccc.prefix>ccc</ccc.prefix>
+
+        <docker.respoitory>robgmills</docker.respoitory>
+        <docker.image>${docker.respoitory}/${ccc.prefix}-${project.artifactId}:${project.version}</docker.image>
         <docker.port.container.jolokia>8778</docker.port.container.jolokia>
         <docker.port.container.http>9090</docker.port.container.http>
 

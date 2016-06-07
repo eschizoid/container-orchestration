@@ -11,6 +11,9 @@ Docker daemon.
 It may also be helpful to install Java and Maven, if you want to build everything from source. If not, that's ok, all of
 the applications and Docker containers have been pre-built and published to [Docker Hub][docker-hub].
 
+# Slide Deck
+[The presentation slide deck can be found here.](http://bit.ly/container-orchestration-slides) 
+
 # Getting started
 
 ## Kubernetes

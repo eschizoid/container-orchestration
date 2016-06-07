@@ -82,17 +82,17 @@ To do that issue the following command:
 
 We can hit the API by making requests through the load balancer.
 
-                                                                      +-------+
-                                                                      |       |
-                                                            +---------> API(1)|
-       +----------+         +------------------------+      |         |       |
-       |          |         |                        |      |         +-------+
-       |   Curl   +---------> Replication Controller +------+
-       |          |         |                        |      |         +-------+
-       +----------+         +------------------------+      |         |       |
-                                                            +---------> API(2)|
-                                                                      |       |
-                                                                      +-------+
+                                                                     +-------+
+                                                                     |       |
+                                                           +---------> API(1)|
+       +---------+         +------------------------+      |         |       |
+       |         |         |                        |      |         +-------+
+       | kubectl +---------> Replication Controller +------+
+       |         |         |                        |      |         +-------+
+       +---------+         +------------------------+      |         |       |
+                                                           +---------> API(2)|
+                                                                     |       |
+                                                                     +-------+
 
 
 First get Kubernetes node port using the following command:

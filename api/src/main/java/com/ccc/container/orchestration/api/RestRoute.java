@@ -29,7 +29,7 @@ public class RestRoute extends RouteBuilder {
 
         from("direct:hello")
             .transform()
-                .constant("Hey hey hey from: " + InetAddressUtil.getLocalHostName());
+                .constant("Hello from: " + InetAddressUtil.getLocalHostName());
 
         from("direct:by")
             .process(exchange -> System.exit(1));

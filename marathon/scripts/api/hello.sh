@@ -6,6 +6,6 @@ source ${DIR}/env
 
 while true
 do
-    curl -v -X GET -w "\n" ${API_ROOT}/hello
+    curl -X GET -w "\n" ${API_ROOT}/hello
     sleep 1
 done

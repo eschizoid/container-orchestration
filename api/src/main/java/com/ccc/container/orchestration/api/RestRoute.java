@@ -31,7 +31,7 @@ public class RestRoute extends RouteBuilder {
             .transform()
                 .constant("Hey hey hey from: " + InetAddressUtil.getLocalHostName());
 
-        from("direct:by")
+        from("direct:crash")
             .process(exchange -> System.exit(1));
 
         from("direct:health-check")

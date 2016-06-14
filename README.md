@@ -34,7 +34,7 @@ sudo cp kubectl /usr/local/bin/kubectl
 #### OS X
 
 ```
-brew install kubectl
+brew install kubernetes-cli
 ```
 
 #### Windows
